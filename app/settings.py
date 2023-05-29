@@ -22,18 +22,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-f-yj&768u(7u1*o%=ynm&8uz(ixdq^6g(ajjp36v+^tw1&z_y_'
 SECRET_KEY = os.environ.get('DJANGO-SECRET-KEY', 'django-insecure-f-yj&768u(7u1*o%=ynm&8uz(ixdq^6g(ajjp36v+^tw1&z_y_')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = ['web-production-51b6.up.railway.app', '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://web-production-51b6.up.railway.app/',
-    'https://web-production-51b6.up.railway.app/admin/'
+    'https://web-production-51b6.up.railway.app',
 ]
 
 # Application definition
@@ -49,18 +46,26 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'users',
-    'posts'
+    'posts',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'https://web-production-51b6.up.railway.app',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000'
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -86,16 +91,6 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'job_solution',
-#         'USER': 'postgres',
-#         'PASSWORD': '414295mini',
-#         'HOST': 'localhost',
-#         'PORT': '5433'
-#     }
-# }
 
 DATABASES = {
     "default": {
@@ -174,12 +169,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# STATICFILES_DIRS = [
-#     BASE_DIR / 'static'
-# ]
-#
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
-# MEDIA_URL = '/uploads/'
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -188,8 +177,6 @@ AUTH_USER_MODEL = 'users.User'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# db_from_env = dj_database_url.config(conn_max_age=500)
-# DATABASES['default'].update(db_from_env)
 DATABASES['default'] = dj_database_url.config(
     conn_max_age=500,
     conn_health_checks=True
