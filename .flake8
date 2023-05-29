@@ -3,3 +3,5 @@ max-line-length = 120
 import-order-style = google
 application-import-names = app, users, posts
 exclude = venv, **/migrations/**
+per-file-ignores =
+    __init__.py: I100
