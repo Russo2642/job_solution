@@ -1,0 +1,5 @@
+[flake8]
+max-line-length = 120
+import-order-style = google
+application-import-names = app, users, posts
+exclude = venv, **/migrations/**

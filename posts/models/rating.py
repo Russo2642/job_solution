@@ -6,7 +6,7 @@ class Rating(models.Model):
     article = models.OneToOneField(
         to='posts.Post',
         related_name='article_rating',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     salary = models.SmallIntegerField(
         blank=False,

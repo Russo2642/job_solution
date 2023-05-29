@@ -1,3 +1,5 @@
+from .comments import Comment
 from .post import Post
 from .rating import Rating
-from .comments import Comment
+
+__all__ = ['Post', 'Rating', 'Comment']

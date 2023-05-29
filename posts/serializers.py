@@ -1,16 +1,16 @@
 from rest_framework import serializers
 
-from .models import Rating, Comment, Post
+from .models import Comment, Post, Rating
 
 
 class RatingReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rating
-        fields = "__all__"
+        fields = '__all__'
 
 
 class PostReadSerializer(serializers.ModelSerializer):
-    author = serializers.CharField(source="author.email", read_only=True)
+    author = serializers.CharField(source='author.email', read_only=True)
     average_rating = serializers.SerializerMethodField(read_only=True)
     likes_count = serializers.SerializerMethodField(read_only=True)
 
@@ -19,7 +19,8 @@ class PostReadSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'author', 'field_of_activity', 'title',
             'website', 'location', 'position', 'work_time_from', 'work_time_to', 'body',
-            'negative', 'positive', 'ensemble', 'likes_count', 'average_rating', 'created_at')
+            'negative', 'positive', 'ensemble', 'likes_count', 'average_rating', 'created_at',
+        )
         read_only_fields = ('id', 'created_at')
 
     def get_average_rating(self, obj):
@@ -30,7 +31,7 @@ class PostReadSerializer(serializers.ModelSerializer):
                     obj.article_rating.management +
                     obj.article_rating.social_package +
                     obj.article_rating.office_comfort
-                   ) / 6
+                   ) / 6    # noqa: JS102
         return avg_rate
 
     def get_likes_count(self, obj):
@@ -45,15 +46,16 @@ class PostWriteSerializer(serializers.ModelSerializer):
         fields = (
             'author', 'field_of_activity', 'title',
             'website', 'location', 'position', 'work_time_from', 'work_time_to', 'body',
-            'negative', 'positive', 'ensemble')
+            'negative', 'positive', 'ensemble',
+        )
 
 
 class CommentReadSerializer(serializers.ModelSerializer):
-    author = serializers.CharField(source="author.username", read_only=True)
+    author = serializers.CharField(source='author.username', read_only=True)
 
     class Meta:
         model = Comment
-        fields = "__all__"
+        fields = '__all__'
 
 
 class CommentWriteSerializer(serializers.ModelSerializer):
@@ -61,4 +63,4 @@ class CommentWriteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = "__all__"
+        fields = '__all__'

@@ -7,20 +7,20 @@ class Comment(models.Model):
     post = models.ForeignKey(
         to='posts.Post',
         related_name='comments',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     author = models.ForeignKey(
         to=get_user_model(),
         related_name='post_comments',
         null=True,
-        on_delete=models.SET_NULL
+        on_delete=models.SET_NULL,
     )
-    body = models.TextField(_("Comment body"), null=False)
+    body = models.TextField(_('Comment body'), null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ("-created_at",)
+        ordering = ('-created_at',)
 
     def __str__(self):
-        return f"{self.body[:20]} by {self.author.email}"
+        return f'{self.body[:20]} by {self.author.email}'

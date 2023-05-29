@@ -9,7 +9,7 @@ from .models.profile import Profile
 class ProfileInline(admin.StackedInline):
     model = Profile
     can_delete = False
-    verbose_name_plural = "Profile"
+    verbose_name_plural = 'Profile'
 
 
 @admin.register(User)
@@ -20,48 +20,48 @@ class CustomUserAdmin(UserAdmin):
     model = User
 
     list_display = (
-        "username",
-        "email",
-        "is_active",
-        "is_staff",
-        "is_superuser",
-        "last_login",
+        'username',
+        'email',
+        'is_active',
+        'is_staff',
+        'is_superuser',
+        'last_login',
     )
-    list_filter = ("is_active", "is_staff", "is_superuser")
+    list_filter = ('is_active', 'is_staff', 'is_superuser')
     fieldsets = (
-        (None, {"fields": ("username", "email", "password")}),
+        (None, {'fields': ('username', 'email', 'password')}),
         (
-            "Permissions",
+            'Permissions',
             {
-                "fields": (
-                    "is_staff",
-                    "is_active",
-                    "is_superuser",
-                    "groups",
-                    "user_permissions",
-                )
+                'fields': (
+                    'is_staff',
+                    'is_active',
+                    'is_superuser',
+                    'groups',
+                    'user_permissions',
+                ),
             },
         ),
-        ("Dates", {"fields": ("last_login", "date_joined")}),
+        ('Dates', {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
         (
             None,
             {
-                "classes": ("wide",),
-                "fields": (
-                    "username",
-                    "email",
-                    "password1",
-                    "password2",
-                    "is_staff",
-                    "is_active",
+                'classes': ('wide',),
+                'fields': (
+                    'username',
+                    'email',
+                    'password1',
+                    'password2',
+                    'is_staff',
+                    'is_active',
                 ),
             },
         ),
     )
-    search_fields = ("email",)
-    ordering = ("email",)
+    search_fields = ('email',)
+    ordering = ('email',)
     inlines = (ProfileInline,)
 
 

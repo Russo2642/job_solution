@@ -3,14 +3,14 @@ from rest_framework import permissions, status, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Rating, Post, Comment
+from .models import Comment, Post, Rating
 from .permissions import IsAuthorOrReadOnly
 from .serializers import (
-    RatingReadSerializer,
-    PostWriteSerializer,
-    PostReadSerializer,
+    CommentReadSerializer,
     CommentWriteSerializer,
-    CommentReadSerializer
+    PostReadSerializer,
+    PostWriteSerializer,
+    RatingReadSerializer,
 )
 
 
@@ -24,15 +24,15 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
 
     def get_serializer_class(self):
-        if self.action in ("create", "update", "partial_update", "destroy"):
+        if self.action in ('create', 'update', 'partial_update', 'destroy'):
             return PostWriteSerializer
 
         return PostReadSerializer
 
     def get_permissions(self):
-        if self.action in ("create",):
+        if self.action in ('create',):
             self.permission_classes = (permissions.IsAuthenticated,)
-        elif self.action in ("update", "partial_update", "destroy"):
+        elif self.action in ('update', 'partial_update', 'destroy'):
             self.permission_classes = (IsAuthorOrReadOnly,)
         else:
             self.permission_classes = (permissions.AllowAny,)
@@ -45,19 +45,19 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         res = super().get_queryset()
-        post_id = self.kwargs.get("post_id")
+        post_id = self.kwargs.get('post_id')
         return res.filter(post__id=post_id)
 
     def get_serializer_class(self):
-        if self.action in ("create", "update", "partial_update", "destroy"):
+        if self.action in ('create', 'update', 'partial_update', 'destroy'):
             return CommentWriteSerializer
 
         return CommentReadSerializer
 
     def get_permissions(self):
-        if self.action in ("create",):
+        if self.action in ('create',):
             self.permission_classes = (permissions.IsAuthenticated,)
-        elif self.action in ("update", "partial_update", "destroy"):
+        elif self.action in ('update', 'partial_update', 'destroy'):
             self.permission_classes = (IsAuthorOrReadOnly,)
         else:
             self.permission_classes = (permissions.AllowAny,)
