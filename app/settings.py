@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO-SECRET-KEY', 'django-insecure-f-yj&768u(7u1*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['web-production-51b6.up.railway.app', '127.0.0.1']
+ALLOWED_HOSTS = ['web-production-51b6.up.railway.app', '127.0.0.1', 'containers-us-west-104.railway.app']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://web-production-51b6.up.railway.app',
