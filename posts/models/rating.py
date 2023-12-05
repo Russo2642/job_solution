@@ -7,6 +7,7 @@ class Rating(models.Model):
         to='posts.Post',
         related_name='article_rating',
         on_delete=models.CASCADE,
+        default=0,
     )
     salary = models.SmallIntegerField(
         blank=False,
