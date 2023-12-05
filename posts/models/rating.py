@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Rating(models.Model):
-    article = models.OneToOneField(
+    article = models.ForeignKey(
         to='posts.Post',
         related_name='article_rating',
         on_delete=models.CASCADE,
