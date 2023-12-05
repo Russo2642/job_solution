@@ -52,6 +52,7 @@ class Post(models.Model):
         to=get_user_model(),
         related_name='post_likes',
         blank=True,
+        null=True,
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
