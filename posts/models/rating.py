@@ -12,29 +12,32 @@ class Rating(models.Model):
         blank=False,
         null=False,
         validators=[MinValueValidator(1), MaxValueValidator(5)],
-        default=0),
+    )
     team = models.SmallIntegerField(
         blank=False,
         null=False,
         validators=[MinValueValidator(1), MaxValueValidator(5)],
-        default=0),
+    )
     education = models.SmallIntegerField(
         blank=False,
         null=False,
         validators=[MinValueValidator(1), MaxValueValidator(5)],
-        default=0),
+    )
     management = models.SmallIntegerField(
         blank=False,
         null=False,
         validators=[MinValueValidator(1), MaxValueValidator(5)],
-        default=0),
+    )
     social_package = models.SmallIntegerField(
         blank=False,
         null=False,
         validators=[MinValueValidator(1), MaxValueValidator(5)],
-        default=0),
+    )
     office_comfort = models.SmallIntegerField(
         blank=False,
         null=False,
         validators=[MinValueValidator(1), MaxValueValidator(5)],
-        default=0),
+    )
+
+    def __str__(self):
+        return f"{self.article}"
