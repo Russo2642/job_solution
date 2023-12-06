@@ -25,7 +25,7 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['title']
-    filterset_fields = ['title', 'location', 'position']
+    filterset_fields = ['title', 'location', 'position', 'author']
 
     def get_serializer_class(self):
         if self.action in ('create', 'update', 'partial_update', 'destroy'):
