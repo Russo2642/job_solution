@@ -38,7 +38,7 @@ class Post(models.Model):
     location = models.CharField(max_length=1000, null=True, verbose_name='Локация')
     position = models.CharField(max_length=300, null=False, verbose_name='Должность')
     work_time_from = models.DateField(null=False, blank=False)
-    work_time_to = models.DateField(null=False, blank=False)
+    work_time_to = models.DateField(null=True, blank=True)
     body = models.TextField(_('Post body'), null=False)
     negative = models.TextField(_('Post negative'), null=True)
     positive = models.TextField(_('Post positive'), null=True)

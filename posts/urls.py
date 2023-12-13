@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from .views import CommentViewSet, LikePostAPIView, PostViewSet, RatingViewSet
+from .views import RatingViewSet, CommentViewSet, PostViewSet, LikePostAPIView
 
 app_name = 'posts'
 

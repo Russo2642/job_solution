@@ -1,7 +1,7 @@
 from django.urls import path
 from rest_framework_simplejwt.views import TokenRefreshView
 
-from users.views import (
+from .views import (
     UserAPIView,
     UserAvatarAPIView,
     UserLoginAPIView,
@@ -9,6 +9,7 @@ from users.views import (
     UserProfileAPIView,
     UserRegisterationAPIView,
 )
+from posts.views.choice_fields import ActivityViewSet, EnsembleViewSet, PositionViewSet, LocationViewSet
 
 app_name = 'users'
 
@@ -20,4 +21,9 @@ urlpatterns = [
     path('', UserAPIView.as_view(), name='user-info'),
     path('profile/', UserProfileAPIView.as_view(), name='user-profile'),
     path('profile/avatar/', UserAvatarAPIView.as_view(), name='user-avatar'),
+
+    path('activity/', ActivityViewSet.as_view(), name='activity_list'),
+    path('ensemble/', EnsembleViewSet.as_view(), name='ensemble_list'),
+    path('position/', PositionViewSet.as_view(), name='position_list'),
+    path('location/', LocationViewSet.as_view(), name='location_list'),
 ]
