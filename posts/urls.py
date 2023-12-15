@@ -6,7 +6,7 @@ from .views import RatingViewSet, CommentViewSet, PostViewSet, LikePostAPIView
 app_name = 'posts'
 
 router = DefaultRouter()
-router.register(r'ratings', RatingViewSet)
+router.register(r'^(?P<post_id>\d+)/ratings', RatingViewSet)
 router.register(r'^(?P<post_id>\d+)/comment', CommentViewSet)
 router.register(r'', PostViewSet)
 
