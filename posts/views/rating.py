@@ -19,7 +19,7 @@ class RatingViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         res = super().get_queryset()
         article_id = self.kwargs.get('article_id')
-        return res.filter(article__id=article_id)
+        return res.filter(post__id=article_id)
 
     def get_serializer_class(self):
         if self.action in ('create', 'update', 'partial_update', 'destroy'):
