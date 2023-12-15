@@ -13,13 +13,11 @@ from posts.permissions import IsAuthorOrReadOnly
 
 class RatingViewSet(viewsets.ModelViewSet):
     queryset = Rating.objects.all()
-    serializer_class = RatingReadSerializer
-    permission_classes = (permissions.AllowAny,)
 
     def get_queryset(self):
         res = super().get_queryset()
         post_id = self.kwargs.get('post_id')
-        return res.filter(article__id=post_id)
+        return res.filter(post__id=post_id)
 
     def get_serializer_class(self):
         if self.action in ('create', 'update', 'partial_update', 'destroy'):

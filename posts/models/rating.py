@@ -3,9 +3,9 @@ from django.db import models
 
 
 class Rating(models.Model):
-    article = models.OneToOneField(
+    post = models.OneToOneField(
         to='posts.Post',
-        related_name='article_rating',
+        related_name='post_rating',
         on_delete=models.CASCADE,
     )
     salary = models.SmallIntegerField(
