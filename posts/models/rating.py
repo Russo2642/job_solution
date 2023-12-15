@@ -4,11 +4,11 @@ from django.db import models
 
 
 class Rating(models.Model):
-    # post = models.ForeignKey(
-    #     to='posts.Post',
-    #     related_name='post_rating',
-    #     on_delete=models.CASCADE,
-    # )
+    post = models.ForeignKey(
+        to='posts.Post',
+        related_name='post_rating',
+        on_delete=models.CASCADE,
+    )
     author = models.ForeignKey(
         to=get_user_model(),
         related_name='author_rating',
