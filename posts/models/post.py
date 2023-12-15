@@ -34,6 +34,7 @@ class Post(models.Model):
         null=False,
         verbose_name='Заголовок',
     )
+    company = models.CharField(max_length=1000, null=False, blank=False, verbose_name='Работодатель')
     website = models.URLField(null=True, blank=True, verbose_name='Сайт')
     location = models.CharField(max_length=1000, null=True, verbose_name='Локация')
     position = models.CharField(max_length=300, null=False, verbose_name='Должность')
