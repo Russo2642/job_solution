@@ -9,8 +9,16 @@ class RatingReadSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class RatingWriteSerializer(serializers.ModelSerializer):
+    author = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = Rating
+        fields = '__all__'
+
+
 class PostReadSerializer(serializers.ModelSerializer):
-    author = serializers.CharField(source='author.email', read_only=True)
+    author = serializers.CharField(source='author.username', read_only=True)
     average_rating = serializers.SerializerMethodField(read_only=True)
     likes_count = serializers.SerializerMethodField(read_only=True)
 
@@ -44,7 +52,7 @@ class PostWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = (
-            'author', 'field_of_activity', 'title',
+            'id', 'author', 'field_of_activity', 'title',
             'website', 'location', 'position', 'work_time_from', 'work_time_to', 'body',
             'negative', 'positive', 'ensemble',
         )
