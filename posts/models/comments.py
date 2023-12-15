@@ -6,12 +6,12 @@ from django.utils.translation import gettext_lazy as _
 class Comment(models.Model):
     post = models.ForeignKey(
         to='posts.Post',
-        related_name='comments',
+        related_name='post_comment',
         on_delete=models.CASCADE,
     )
     author = models.ForeignKey(
         to=get_user_model(),
-        related_name='post_comments',
+        related_name='comment_author',
         null=True,
         on_delete=models.SET_NULL,
     )
