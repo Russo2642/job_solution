@@ -1,12 +1,11 @@
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets, filters, permissions, status
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
 from posts.models import Post
 from posts.permissions import IsAuthorOrReadOnly
 from posts.serializers import PostWriteSerializer, PostReadSerializer
+from rest_framework import viewsets, filters, permissions, status
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -47,3 +46,8 @@ class LikePostAPIView(APIView):
             post.likes.add(user)
 
         return Response(status=status.HTTP_200_OK)
+
+    def get(self, request, pk):
+        post = get_object_or_404(Post, pk=pk)
+        likes = [like.email for like in post.likes.all()]
+        return Response(status=status.HTTP_200_OK, data=likes)

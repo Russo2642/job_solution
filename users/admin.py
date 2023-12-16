@@ -20,8 +20,8 @@ class CustomUserAdmin(UserAdmin):
     model = User
 
     list_display = (
-        'username',
         'email',
+        'username',
         'is_active',
         'is_staff',
         'is_superuser',

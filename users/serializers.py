@@ -11,7 +11,7 @@ class CustomUserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email')
 
 
-class UserRegisterationSerializer(serializers.ModelSerializer):
+class UserRegistrationSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'password')
