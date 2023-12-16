@@ -36,7 +36,7 @@ class PostViewSet(viewsets.ModelViewSet):
 class LikePostAPIView(APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request, pk):
+    def post(self, request, pk):
         user = request.user
         post = get_object_or_404(Post, pk=pk)
 
