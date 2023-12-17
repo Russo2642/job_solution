@@ -39,6 +39,7 @@ class ProfileSerializer(CustomUserSerializer):
 
 
 class ProfileAvatarSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Profile
         fields = ('avatar',)

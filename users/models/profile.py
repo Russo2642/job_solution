@@ -1,3 +1,5 @@
+import os
+
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -9,3 +11,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.email
+
+    @property
+    def filename(self):
+        return os.path.basename(self.image.name)

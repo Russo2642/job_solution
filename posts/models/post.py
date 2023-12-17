@@ -55,6 +55,12 @@ class Post(models.Model):
         blank=True,
         null=True,
     )
+    views = models.ManyToManyField(
+        to=get_user_model(),
+        related_name='post_views',
+        blank=True,
+        null=True,
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

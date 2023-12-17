@@ -23,13 +23,14 @@ class PostReadSerializer(serializers.ModelSerializer):
     author = serializers.CharField(source='author.username', read_only=True)
     average_rating = serializers.SerializerMethodField(read_only=True)
     likes_count = serializers.SerializerMethodField(read_only=True)
+    views_count = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Post
         fields = (
             'id', 'author', 'field_of_activity', 'title',
             'company', 'website', 'location', 'position', 'work_time_from', 'work_time_to', 'body',
-            'negative', 'positive', 'ensemble', 'likes_count', 'average_rating', 'created_at',
+            'negative', 'positive', 'ensemble', 'likes_count', 'views_count', 'average_rating', 'created_at',
         )
         read_only_fields = ('id', 'created_at')
 
@@ -46,6 +47,9 @@ class PostReadSerializer(serializers.ModelSerializer):
 
     def get_likes_count(self, obj):
         return obj.likes.count()
+
+    def get_views_count(self, obj):
+        return obj.views.count()
 
 
 class PostWriteSerializer(serializers.ModelSerializer):

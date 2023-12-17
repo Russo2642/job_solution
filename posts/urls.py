@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from .views import RatingViewSet, CommentViewSet, PostViewSet, LikePostAPIView
+from .views import RatingViewSet, CommentViewSet, PostViewSet, LikePostAPIView, ViewsPostAPIView
 
 app_name = 'posts'
 
@@ -13,4 +13,5 @@ router.register(r'', PostViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('like/<int:pk>/', LikePostAPIView.as_view(), name='like-post'),
+    path('view/<int:pk>/', ViewsPostAPIView.as_view(), name='view-post'),
 ]
