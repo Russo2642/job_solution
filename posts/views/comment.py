@@ -1,8 +1,7 @@
-from rest_framework import permissions, viewsets
-
 from posts.models import Comment
 from posts.permissions import IsAuthorOrReadOnly
 from posts.serializers import CommentWriteSerializer, CommentReadSerializer
+from rest_framework import permissions, viewsets
 
 
 class CommentViewSet(viewsets.ModelViewSet):
