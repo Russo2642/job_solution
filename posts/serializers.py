@@ -68,6 +68,12 @@ class PostWriteSerializer(serializers.ModelSerializer):
             'negative', 'positive', 'ensemble',
         )
 
+    def validate(self, data):
+        if data['work_time_from'] > data['work_time_to']:
+            raise serializers.ValidationError('Дата начала должна быть раньше даты окончания.')
+
+        return data
+
 
 class CommentReadSerializer(serializers.ModelSerializer):
     author = serializers.CharField(source='author.username', read_only=True)

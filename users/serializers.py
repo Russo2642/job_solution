@@ -35,7 +35,7 @@ class UserLoginSerializer(serializers.Serializer):
 class ProfileSerializer(CustomUserSerializer):
     class Meta:
         model = Profile
-        fields = ('full_name',)
+        fields = ('full_name', 'avatar')
 
 
 class ProfileAvatarSerializer(serializers.ModelSerializer):
