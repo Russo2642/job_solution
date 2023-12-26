@@ -7,9 +7,11 @@ from rest_framework import viewsets, filters, permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from posts.models.post import StatusChoice
+
 
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
+    queryset = Post.objects.filter(status=StatusChoice.VERIFIED)
     filter_backends = [filters.SearchFilter, DjangoFilterBackend, filters.OrderingFilter]
     search_fields = ['title']
 

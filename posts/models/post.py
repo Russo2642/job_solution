@@ -15,6 +15,12 @@ class EnsembleChoice(models.TextChoices):
     NEGATIVE = 'NEGATIVE', 'Отрицательно'
 
 
+class StatusChoice(models.TextChoices):
+    UNVERIFIED = 'UNVERIFIED', 'Не проверен'
+    VERIFIED = 'VERIFIED', 'Проверен'
+    AWAITING = 'AWAITING', 'Ожидает проверки'
+
+
 class Post(models.Model):
     author = models.ForeignKey(
         to=get_user_model(),
@@ -60,6 +66,12 @@ class Post(models.Model):
         related_name='post_views',
         blank=True,
         null=True,
+    )
+    status = models.CharField(
+        choices=StatusChoice.choices,
+        default=StatusChoice.UNVERIFIED,
+        max_length=100,
+        verbose_name='Статус',
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
