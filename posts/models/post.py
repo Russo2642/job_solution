@@ -6,6 +6,9 @@ from django.utils.translation import gettext_lazy as _
 class FieldOfActivityChoice(models.TextChoices):
     DEVELOPMENT = 'DEVELOPMENT', 'Разработка'
     DESIGN = 'DESIGN', 'Дизайн'
+    MARKETING = 'MARKETING', 'Маркетинг'
+    ADMINISTRATION = 'ADMINISTRATION', 'Администрирование'
+    APPLIED_TECHNOLOGIES = 'APPLIED_TECHNOLOGIES', 'Прикладные технологии'
     OTHER = 'OTHER', 'Другое'
 
 
